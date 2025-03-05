@@ -8,13 +8,6 @@ st.write(
     """Choose the fruits you want in your custom Smoothie!"""
 )
 
-# option = st.selectbox(
-#     "How would you like to be contacted?",
-#     ("Banana", "Strawberries", "Peaches"),
-# )
-
-# st.write("You selected:", option)
-
 name_on_order = st.text_input('Name on Smoothie:')
 st.write('The name on your smoothie will be:',name_on_order)
 
@@ -30,9 +23,6 @@ ingredients_list = st.multiselect(
 )
 
 if ingredients_list:
-    # st.write(ingredients_list)
-    # st.text(ingredients_list)
-
     ingredients_string = ''
 
     for fruit_chosen in ingredients_list:
@@ -52,3 +42,8 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         success_msg = 'Your Smoothie is ordered, '+name_on_order+'!';
         st.success(success_msg, icon="✅")
+
+# New Section to display smoothiefroot nutrition information 
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
